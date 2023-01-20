@@ -1,6 +1,6 @@
 export const dev = window.location.origin.includes('localhost')
-export const baseURL = dev ? 'http://localhost:3000' : ''
+export const baseURL = 'https://localhost:7045'
 export const useSockets = false
-export const domain = ''
-export const clientId = ''
-export const audience = ''
+export const domain = 'dev-3ijvp67qmmnhoc8j.us.auth0.com'
+export const clientId = 'yyV5J2O29PMCbuqvXZKiul422rFIDJkT'
+export const audience = 'https://codeworksapp.com'

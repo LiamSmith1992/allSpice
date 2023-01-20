@@ -1,8 +1,43 @@
-CREATE TABLE IF NOT EXISTS accounts(
-  id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
-  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
-  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
-  name varchar(255) COMMENT 'User Name',
-  email varchar(255) COMMENT 'User Email',
-  picture varchar(255) COMMENT 'User Picture'
-) default charset utf8 COMMENT '';
+CREATE TABLE
+    IF NOT EXISTS accounts(
+        id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        name varchar(255) COMMENT 'User Name',
+        email varchar(255) COMMENT 'User Email',
+        picture varchar(255) COMMENT 'User Picture'
+    ) default charset utf8 COMMENT '';
+
+CREATE TABLE
+    recipes(
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+        title VARCHAR(50) NOT NULL,
+        instructions TEXT NOT NULL,
+        img VARCHAR(255) NOT NULL DEFAULT 'https://i.natgeofe.com/k/c3acb8e8-eb30-4b53-8fc5-4ae9f0de9c4c/ww-funny-animal-faces-hippopotamus_3x2.jpg',
+        category VARCHAR(50) NOT NULL,
+        creatorId VARCHAR(255) NOT NULL,
+        Foreign Key (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
+    ) default charset utf8 COMMENT '';
+
+DROP TABLE recipes;
+
+CREATE TABLE
+    ingredient(
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(50),
+        quantitiy INT NOT NULL,
+        ReciepeId INT NOT NULL
+    ) default charset utf8 COMMENT '';
+
+DROP TABLE ingredient;
+
+CREATE TABLE
+    favorite(
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        accountId VARCHAR(255) NOT NULL,
+        recipeId INT NOT NULL
+    ) default charset utf8 COMMENT '';
+
+DROP TABLE favorite;

@@ -1,4 +1,3 @@
-
 {
   "folders": [
     {
@@ -8,7 +7,11 @@
     {
       "path": "allSpice",
       "name": "server"
-    },{"path":".github/workflows", "name":"workflows"}
+    },
+    {
+      "path": ".github/workflows",
+      "name": "workflows"
+    }
   ],
   "settings": {
     "editor.suggestSelection": "first",
@@ -40,6 +43,26 @@
     },
     "[vue]": {
       "editor.defaultFormatter": "Vue.volar"
-    }
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#a7b6c4",
+      "activityBar.background": "#a7b6c4",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#996680",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "commandCenter.border": "#15202b99",
+      "sash.hoverBorder": "#a7b6c4",
+      "statusBar.background": "#889db0",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#69849c",
+      "statusBarItem.remoteBackground": "#889db0",
+      "statusBarItem.remoteForeground": "#15202b",
+      "titleBar.activeBackground": "#889db0",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveBackground": "#889db099",
+      "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#889db0"
   }
 }
