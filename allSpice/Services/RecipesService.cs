@@ -17,6 +17,19 @@ public class RecipesService
     return recipe;
   }
 
+  internal List<Recipe> Get()
+  {
+    List<Recipe> recipes = _repo.Get();
+    return recipes;
+  }
 
-
+  internal Recipe GetOne(int id)
+  {
+    Recipe recipe = _repo.GetOne(id);
+    if (recipe == null)
+    {
+      throw new Exception("no recipe with this id");
+    }
+    return recipe;
+  }
 }
