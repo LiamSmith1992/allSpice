@@ -27,9 +27,9 @@ CREATE TABLE
     ingredient(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(50),
-        quantitiy INT NOT NULL,
+        quantity TEXT NOT NULL,
         recipeId INT NOT NULL,
-        creatorId VARCHAR(255) NOT NULL,
+        creatorId VARCHAR(255),
         FOREIGN KEY (creatorId) REFERENCES accounts (id),
         FOREIGN KEY (recipeId) REFERENCES recipes (id)
     ) default charset utf8 COMMENT '';

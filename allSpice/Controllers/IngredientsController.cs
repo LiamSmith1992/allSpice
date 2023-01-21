@@ -5,15 +5,14 @@ namespace allSpice.Controllers;
 [Route("api/[controller]")]
 public class IngredientsController : ControllerBase
 {
-  private readonly RecipesService _recipesService;
+
   private readonly IngredientsService _ingredientsService;
   private readonly Auth0Provider _auth0provider;
 
-  public IngredientsController(IngredientsService ingredientsService, Auth0Provider auth0provider, RecipesService recipesService)
+  public IngredientsController(IngredientsService ingredientsService, Auth0Provider auth0provider)
   {
     _ingredientsService = ingredientsService;
     _auth0provider = auth0provider;
-    _recipesService = recipesService;
   }
 
   [HttpPost]

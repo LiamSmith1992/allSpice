@@ -12,10 +12,10 @@ public class IngredientsRepository
   internal Ingredient Create(Ingredient ingredientData)
   {
     string sql = @"
-    INSERT INTO ingredients
+    INSERT INTO ingredient
     (Name, Quantity, RecipeId)
     VALUES
-    (@Name, @Quantity, @RecipeId)
+    (@Name, @Quantity, @RecipeId);
     SELECT LAST_INSERT_ID();
     ";
     int id = _db.ExecuteScalar<int>(sql, ingredientData);
