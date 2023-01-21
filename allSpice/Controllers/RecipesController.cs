@@ -67,4 +67,38 @@ public class RecipesController : ControllerBase
     }
   }
 
+  [HttpPut("{id}")]
+  [Authorize]
+  public ActionResult<Recipe> Update([FromBody] Recipe recipeData, int id)
+  {
+    try
+    {
+      Recipe recipe = _recipesService.Update(recipeData, id);
+      return Ok(recipe);
+    }
+    catch (Exception e)
+    {
+
+      return BadRequest(e.Message);
+    }
+  }
+
+
+  [HttpDelete("{id}")]
+  [Authorize]
+  public async Task<ActionResult<string>> Remove(int id)
+  {
+
+    try
+    {
+      Account userInfo = await _auth0provider.GetUserInfoAsync<Account>(HttpContext);
+      string message = _recipesService.Remove(id, userInfo.Id);
+      return Ok(message);
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
+
 }
