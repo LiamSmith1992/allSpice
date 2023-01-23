@@ -8,11 +8,13 @@ public class RecipesController : ControllerBase
 {
   private readonly RecipesService _recipesService;
   private readonly Auth0Provider _auth0provider;
+  private readonly IngredientsService _ingredientsService;
 
-  public RecipesController(RecipesService recipesService, Auth0Provider auth0provider)
+  public RecipesController(RecipesService recipesService, Auth0Provider auth0provider, IngredientsService ingredientsService)
   {
     _recipesService = recipesService;
     _auth0provider = auth0provider;
+    _ingredientsService = ingredientsService;
   }
 
   [HttpPost]
@@ -100,5 +102,26 @@ public class RecipesController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
+  [HttpGet("{id}/ingredients")]
+  public async Task<ActionResult<List<Ingredient>>> GetIngredientsByRecipeId(int id)
+  {
+    try
+    {
+      Account userInfo = await _auth0provider.GetUserInfoAsync<Account>(HttpContext);
+
+      List<Ingredient> ingredients = _ingredientsService.GetIngredientsByRecipeId(id);
+      return Ok(ingredients);
+    }
+    catch (Exception e)
+    {
+
+      return BadRequest(e.Message);
+    }
+  }
+
+
+
+
 
 }

@@ -39,8 +39,10 @@ DROP TABLE ingredient;
 CREATE TABLE
     favorite(
         id INT AUTO_INCREMENT PRIMARY KEY,
+        recipeId INT NOT NULL,
         accountId VARCHAR(255) NOT NULL,
-        recipeId INT NOT NULL
+        FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE,
+        FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
 DROP TABLE favorite;
