@@ -27,6 +27,8 @@ public class RecipesRepository
 
   internal List<Recipe> Get()
   {
+    // NOTE add search params to support server search
+    // search = $"%{search}%";
     string sql = @"
     SELECT 
     rp.*,

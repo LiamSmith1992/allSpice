@@ -19,7 +19,7 @@ public class IngredientsRepository
     SELECT LAST_INSERT_ID();
     ";
     int id = _db.ExecuteScalar<int>(sql, ingredientData);
-
+    ingredientData.Id = id;
     return ingredientData;
 
   }
@@ -29,10 +29,11 @@ public class IngredientsRepository
     string sql = @"
    SELECT
    i.*,
+   
    a.*
    FROM ingredient i
    JOIN accounts a On i.creatorId = a.id
-   WHERE recipeId = @recipeId;
+   WHERE i.recipeId = @recipeId;
    ";
     List<Ingredient> ingredients = _db.Query<Ingredient, Account, Ingredient>(sql, (ingredient, account) =>
     {
@@ -42,13 +43,13 @@ public class IngredientsRepository
     return ingredients;
   }
 
-  internal void Remove(int id)
+  internal bool Remove(int id)
   {
     string sql = @"
    DELETE FROM ingredient
    WHERE id = @id
    ";
     int rows = _db.Execute(sql, new { id });
-
+    return rows > 0;
   }
 }

@@ -54,7 +54,7 @@ public class RecipesController : ControllerBase
 
 
   [HttpGet("{id}")]
-  public ActionResult<Recipe> GetOne(int id)
+  public ActionResult<Recipe> GetOne(int id, string search)
   {
     try
     {

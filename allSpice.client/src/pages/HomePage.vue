@@ -23,12 +23,14 @@
 
     <section v-if="recipe" class="row  ">
       <div v-for="r in recipe" class="d-flex justify-content-around col-4   text-center">
-        <div class="m-1 bg-dark border border-2 rounded border-light">
-          <h5 class="text-limit p-2"> <span class="">{{ r.title }}</span></h5>
-          <div>
+        <div @click="setActiveRecipe(r.id)" class="img-fluid">
+          <div data-bs-toggle="modal" data-bs-target="#exampleModal"
+            class=" selectable m-1 bg-dark border border-2 rounded border-light  img-size"
+            :style="`background-image: url(${r.img})`">
+            <div>
+              <h5 class="text-limit p-2"> <span class="">{{ r.title }}</span></h5>
 
-            <img data-bs-toggle="modal" data-bs-target="#exampleModal" class="selectable img-fluid img-size"
-              :src="r.img" alt="">
+            </div>
           </div>
         </div>
       </div>
@@ -41,8 +43,8 @@
             <h5 class="modal-title" id="exampleModalLabel"></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
-
+          <div v-if="activeRecipe" class="modal-body">
+            <img class="img-fluid" :src="activeRecipe.img" alt="">
           </div>
           <div class="modal-footer">
 

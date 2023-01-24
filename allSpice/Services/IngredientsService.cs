@@ -30,9 +30,14 @@ public class IngredientsService
 
   internal string Remove(int id)
   {
-    _repo.Remove(id);
+    // TODO getOneIngredient to check the creator of ingredient 
+    bool result = _repo.Remove(id);
+    if (result == false)
+    {
+      throw new Exception("nothing was deleted");
+    }
     return "was deleted";
   }
 
-
+  // FIXME make a getOneIngredient function 
 }
