@@ -125,7 +125,8 @@ export default {
 .img-size {
   height: 40vh;
   width: 40vh;
-  object-fit: cover;
+  background-size: cover;
+  background-image: center;
 }
 
 .text-limit {
