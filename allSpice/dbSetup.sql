@@ -50,3 +50,5 @@ DROP TABLE favorite;
 --
 
 SELECT * FROM recipes WHERE category LIKE '%%';
+
+SELECT * FROM favorites WHERE id = 7;

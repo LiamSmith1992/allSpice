@@ -16,7 +16,7 @@ public class FavoritesController : ControllerBase
     _auth0provider = auth0provider;
   }
 
-
+  [HttpPost]
   public async Task<ActionResult<Favorite>> Create([FromBody] Favorite favData)
   {
     try
@@ -34,7 +34,14 @@ public class FavoritesController : ControllerBase
     }
   }
 
-
+  [HttpDelete("{id}")]
+  [Authorize]
+  public async Task<ActionResult<string>> UnLike(int id)
+  {
+    Account userInfo = await _auth0provider.GetUserInfoAsync<Account>(HttpContext);
+    string message = _favoritesService.UnLike(id, userInfo.Id);
+    return Ok(message);
+  }
 
 
 }

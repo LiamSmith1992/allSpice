@@ -55,11 +55,12 @@ public class RecipesRepository
     JOIN accounts On accounts.id = recipes.creatorId
     WHERE recipes.id = @id;
     ";
-    return _db.Query<Recipe, Account, Recipe>(sql, (recipe, account) =>
-    {
-      recipe.Creator = account;
-      return recipe;
-    }, new { id }).FirstOrDefault();
+    Recipe recipe = _db.Query<Recipe, Account, Recipe>(sql, (recipe, account) =>
+     {
+       recipe.Creator = account;
+       return recipe;
+     }, new { id }).FirstOrDefault();
+    return recipe;
   }
 
   internal void Remove(int id)
