@@ -37,7 +37,7 @@ CREATE TABLE
 DROP TABLE ingredient;
 
 CREATE TABLE
-    favorite(
+    favorites(
         id INT AUTO_INCREMENT PRIMARY KEY,
         recipeId INT NOT NULL,
         accountId VARCHAR(255) NOT NULL,
@@ -46,3 +46,7 @@ CREATE TABLE
     ) default charset utf8 COMMENT '';
 
 DROP TABLE favorite;
+
+--
+
+SELECT * FROM recipes WHERE category LIKE '%%';
