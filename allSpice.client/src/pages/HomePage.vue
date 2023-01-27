@@ -11,11 +11,12 @@
 
     <section class="row justify-content-center">
       <div class="d-flex justify-content-center ">
-        <div class="border border-2 border-light rounded ">
+        <div class="move-up border border-2 border-light rounded bg-light
+         ">
 
-          <button class="btn ">Home</button>
-          <button class="btn">My Recipes</button>
-          <button class="btn">Favorites</button>
+          <button class="btn text-dark ">Home</button>
+          <button class="btn text-dark">My Recipes</button>
+          <button class="btn text-dark">Favorites</button>
         </div>
       </div>
 
@@ -24,37 +25,31 @@
     <section v-if="recipe" class="row  ">
       <div v-for="r in recipe" class="d-flex justify-content-around col-4   text-center">
         <div @click="setActiveRecipe(r.id)" class="img-fluid">
-          <div data-bs-toggle="modal" data-bs-target="#exampleModal"
+
+          <div data-bs-toggle="modal" data-bs-target="#appVueModal"
             class=" selectable m-1 bg-dark border border-2 rounded border-light  img-size"
             :style="`background-image: url(${r.img})`">
             <div>
               <h5 class="text-limit p-2"> <span class="">{{ r.title }}</span></h5>
-
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div v-if="activeRecipe" class="modal-body">
-            <img class="img-fluid" :src="activeRecipe.img" alt="">
-          </div>
-          <div class="modal-footer">
+    <section class="row sticky-bottom justify-content-end">
 
-          </div>
-        </div>
+      <div class="col-3  d-flex justify-content-end ">
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success m-3"> Add Recipe
+        </button>
+
       </div>
-    </div>
-
+    </section>
 
   </div>
+  <Modal id="exampleModal">
+    <RecipeFormPage />
+  </Modal>
 </template>
 
 <script>
@@ -63,6 +58,8 @@ import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
 import { recipesService } from "../services/RecipesService"
 import { AppState } from "../AppState";
+import Modal from '../components/Modal.vue'
+import RecipeFormPage from '../components/RecipeForm.vue'
 
 
 
@@ -117,7 +114,8 @@ export default {
 
 
     }
-  }
+  },
+  components: { Modal, RecipeFormPage }
 }
 </script>
 
@@ -150,5 +148,9 @@ export default {
 
 .bg-color {
   background-color: rgba(226, 102, 13, 0.648);
+}
+
+.move-up {
+  transform: translateY(-3vh);
 }
 </style>

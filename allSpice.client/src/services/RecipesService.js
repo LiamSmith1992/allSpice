@@ -22,6 +22,14 @@ class RecipesService {
     AppState.activeRecipe = res.data
   }
 
+  async createRecipe(body) {
+    const res = await api.post('api/recipes', body)
+    logger.log('create recipe', res.data)
+    AppState.recipes.push(res.data)
+    AppState.activeRecipe = res.data
+
+  }
+
 }
 
 
